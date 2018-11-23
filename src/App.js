@@ -1,26 +1,25 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Stopwatch from './Stopwatch';
 
 class App extends Component {
+  
+
+  boxclasses = "ba b--light-gray br3 shadow-4"
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div className="Avenir">
+        <div className="flex justify-center b f-headline">
+          <p>Cube Timer</p>
+        </div>
+        <div className="flex justify-center">
+          <div className={this.boxclasses}>
+            <Stopwatch running={false} runningTime={0}/>
+          </div>
+        </div>
       </div>
+      
     );
   }
 }
