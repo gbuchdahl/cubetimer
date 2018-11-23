@@ -5,7 +5,7 @@ import Stopwatch from './Stopwatch';
 class App extends Component {
   
 
-  boxclasses = "ba b--light-gray br3 shadow-4"
+  boxclasses = "ba b--light-gray br3 shadow-4 w-60"
 
   render() {
     return (
