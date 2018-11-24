@@ -14,6 +14,12 @@ export default class Stopwatch extends Component {
         }
     }
 
+    componentWillReceiveProps(nextProps){
+        if (nextProps.running !== this.state.running) {
+            this.handleButton()
+        }
+    }
+
     handleButton = () => {
         if (!this.state.running) {
             this.setState({startTime: Date.now()})

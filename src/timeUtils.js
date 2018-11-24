@@ -2,7 +2,7 @@ import React from 'react'
 
 export const formatTime = timeInMs => {
     var millis = padZeros((timeInMs / 10) % 100)
-    var secs = padZeros((timeInMs/1000) % 60)
+    var secs = parseInt((timeInMs/1000) % 60)
     var mins = parseInt((timeInMs / 60000) % 60);
     if (mins !== 0) {
         return mins + ':' + secs + '.' + millis;
