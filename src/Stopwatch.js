@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import moment from 'moment';
+import {formatTime} from './timeUtils'
 
 export default class Stopwatch extends Component {
 
@@ -11,7 +12,6 @@ export default class Stopwatch extends Component {
             runningTime,
             startTime: null,
         }
-        console.log(moment())
     }
 
     handleButton = () => {
@@ -20,31 +20,11 @@ export default class Stopwatch extends Component {
             this.timer = setInterval(
                 () => this.setState({runningTime: Date.now() - this.state.startTime}), 10) 
         } else {
-            console.log("STOP")
             clearInterval(this.timer)
         }
         this.setState({
             running: !this.state.running
         })
-    }
-
-    formattime = timeInMs => {
-        var millis = this.padZeros((timeInMs / 10) % 100)
-        var secs = this.padZeros((timeInMs/1000) % 60)
-        var mins = parseInt((timeInMs / 60000) % 60);
-        if (mins !== 0) {
-            return mins + ':' + secs + '.' + millis;
-        }else{
-            return secs + '.' + millis
-        }
-    }
-
-    padZeros = num => {
-        let numStr = parseInt(num).toString();
-        if (numStr.length < 2) {
-            return "0" + numStr;
-        }
-        return numStr;
     }
 
     render(){
@@ -53,7 +33,7 @@ export default class Stopwatch extends Component {
 
             <div className='flex flex-column justify-center'>
                 <div className='ph6 pv4 f-headline center tracked-tight'>
-                    {this.formattime(this.state.runningTime)}
+                    {formatTime(this.state.runningTime)}
                 </div>
                 <div className='pb3 center ph5'>
                     {this.state.running ? 
