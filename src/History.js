@@ -3,11 +3,15 @@ import { formatTime } from './timeUtils'
 
 export default class History extends Component {
 
-    constructor(props){
+    constructor({times}){
         super();
         this.state = {
-            times: [],
+            times
         }
+    }
+
+    componentWillReceiveProps(nextProps){
+        this.setState({times: nextProps.times})
     }
 
     render(){

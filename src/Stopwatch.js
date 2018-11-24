@@ -21,6 +21,7 @@ export default class Stopwatch extends Component {
                 () => this.setState({runningTime: Date.now() - this.state.startTime}), 10) 
         } else {
             clearInterval(this.timer)
+            this.props.updateTimes(this.state.runningTime)
         }
         this.setState({
             running: !this.state.running
