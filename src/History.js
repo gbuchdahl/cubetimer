@@ -15,13 +15,17 @@ export default class History extends Component {
     }
 
     render(){
+
+        let minTime = Math.min(...this.state.times)
+
+
         return(
-            <div className='flex flex-column justify-around'>
+            <div className='flex flex-column flex-wrap'>
                 <div>
-                    <p className='center fw6 f4 ph3'>History</p>
-                    <ol className='flex-wrap'>
+                    <p className='tc fw6 f4 ph3'>History</p>
+                    <ol className='flex flex-column flex-wrap'>
                     {this.state.times.map((time) => 
-                        <li className='pv1 gray'>{formatTime(time)}</li>)}
+                        <li className={(minTime===time) ? 'green pv1 b ' : 'gray pv1'}>{formatTime(time)}</li>)}
                     </ol>
                 </div>
                 <button onClick={this.props.clear} className="bw0 grow br3 bg-orange white fw5 f3 center">RESET</button>

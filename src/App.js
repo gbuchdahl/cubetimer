@@ -30,27 +30,29 @@ class App extends Component {
     if (e.keyCode === 32) {
       this.setState({running: !this.state.running})
     }
+    if (e.keyCode === 82) {
+      this.clearHistory()
+    }
   }
 
   clearHistory = () => {
     this.setState({times: []})
-  
   };
 
   render() {
     return (
       <div className="avenir">
       <KeyboardEventHandler
-        handleKeys={['space']}
+        handleKeys={['space', 'r']}
         onKeyEvent={(key, e) => this.handleSpace(e)} />
         <div className="flex vh-100 justify-around" onKeyDown={(e) => this.handleSpace(e)}>
-          <div className='w-80'>
+          <div className='w-70'>
             <div className='flex flex-column items-center'>
               <p className="b f-headline">Cube Timer</p>
               <div className={this.boxclasses + ' w60'}>
                 <Stopwatch running={this.state.running} runningTime={0} updateTimes={this.timeAdder}/>
               </div>
-              <p className='gray pt2'>Press space to toggle clock</p>
+              <p className='gray pt2'>Press space to {this.state.running ? 'stop' : 'start'} clock, r to reset history</p>
             </div>
           </div>
           <div className='w-20 pa3 flex flex-column justify-around'>

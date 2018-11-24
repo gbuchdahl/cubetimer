@@ -26,7 +26,7 @@ export default class Statistics extends Component {
     render(){
         return(
             <div className='flex flex-column ph3 pv1'>
-                <p className='center fw6 f4'>Statistics</p>
+                <p className='center fw6 f4 ph3'>Statistics</p>
                 <p>Average:  
                     <span className='gray'> {this.state.average ? formatTime(this.state.average) : 'N/A'}</span>
                 </p>
