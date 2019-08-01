@@ -1,6 +1,6 @@
 # Cube Timer
 
-A simple timer for anything, optimized for rubix cube solving. 
+A simple timer for anything, optimized for rubix cube solving. ![View it here!](https://cube-timer-6e939.web.app/)
 
 ![CubeTimer](/public/cubetimer.jpg?raw=true "Cube Timer")
 
