@@ -20,6 +20,9 @@ class App extends Component {
 
   timeAdder = time => {
     let newtimes = [...this.state.times, time];
+    if (newtimes[newtimes.length - 1] === newtimes[newtimes.length - 2]) {
+      newtimes.pop()
+    }
     this.setState({ times: newtimes });
   }
 

@@ -38,14 +38,14 @@ export default class Stopwatch extends Component {
 
         return (
 
-            <div >
+            <div onClick={this.handleButton} >
                 <div id='time' className='mono is-1 title'>
                     {formatTime(this.state.runningTime)}
                 </div>
                 <div>
                     {this.state.running ?
-                        <button onClick={this.handleButton} className="button is-danger is-fullwidth is-large">STOP</button> :
-                        <button onClick={this.handleButton} className="button is-primary is-fullwidth is-large">START</button>}
+                        <button className="button is-danger is-fullwidth is-large">STOP</button> :
+                        <button className="button is-primary is-fullwidth is-large">START</button>}
 
                 </div>
             </div >
