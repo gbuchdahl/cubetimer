@@ -4,11 +4,12 @@ import './App.css';
 import Stopwatch from './Stopwatch';
 import History from './History';
 import Statistics from './Statistics';
+import Box from './Box';
 
 
 class App extends Component {
-  
-  constructor(){
+
+  constructor() {
     super();
     this.state = {
       times: [],
@@ -17,18 +18,15 @@ class App extends Component {
     this.handleSpace = this.handleSpace.bind(this);
   }
 
-
-  boxclasses = "ba b--light-gray br3 shadow-4"
-
   timeAdder = time => {
     let newtimes = [...this.state.times, time];
-    this.setState({times: newtimes});
+    this.setState({ times: newtimes });
   }
 
   handleSpace = e => {
     e.target.blur();
     if (e.keyCode === 32) {
-      this.setState({running: !this.state.running})
+      this.setState({ running: !this.state.running })
     }
     if (e.keyCode === 82) {
       this.clearHistory()
@@ -36,37 +34,40 @@ class App extends Component {
   }
 
   clearHistory = () => {
-    this.setState({times: []})
+    this.setState({ times: [] })
   };
 
   render() {
     return (
-      <div className="avenir">
-      <KeyboardEventHandler
-        handleKeys={['space', 'r']}
-        onKeyEvent={(key, e) => this.handleSpace(e)} />
-        <div className="flex vh-100 justify-around" onKeyDown={(e) => this.handleSpace(e)}>
-          <div className='w-70'>
-            <div className='flex flex-column items-center'>
-              <p className="b f-headline">Cube Timer</p>
-              <div className={this.boxclasses + ' w60'}>
-                <Stopwatch running={this.state.running} runningTime={0} updateTimes={this.timeAdder}/>
-              </div>
-              <p className='gray pt2'>Press space to {this.state.running ? 'stop' : 'start'} clock, r to reset history</p>
-            </div>
-          </div>
-          <div className='w-20 pa3 flex flex-column justify-around'>
-            <div className={this.boxclasses + ' h5'}>
-              <History clear={this.clearHistory} times={this.state.times}></History>
-            </div>
-            <div className={this.boxclasses + ' h5'}>
-              <Statistics times={this.state.times}></Statistics>
-            </div>
+
+      <div className="tile is-ancestor avenir" style={{ marginTop: 36 + 'px' }} onKeyDown={(e) => this.handleSpace(e)}>
+        <KeyboardEventHandler
+          handleKeys={['space', 'r']}
+          onKeyEvent={(key, e) => this.handleSpace(e)} />
+        <div className='tile is-parent is-8 is-12-mobile'>
+          <div className="tile is-child has-text-centered">
+            <p id='page-title' className="title has-text-weight-bold">Cube Timer</p>
+            <Box style={{ minHeight: 300 + 'px' }}>
+              <Stopwatch running={this.state.running} runningTime={0} updateTimes={this.timeAdder} />
+            </Box>
+            <p className='has-text-grey'>Press space to {this.state.running ? 'stop' : 'start'} clock, r to reset history</p>
           </div>
         </div>
-        
-      </div>
-      
+        <div className="tile is-parent is-vertical">
+          <div className='tile is-child'>
+            <Box>
+              <History clear={this.clearHistory} times={this.state.times}></History>
+            </Box>
+          </div>
+          <div className='tile is-child'>
+            <Box>
+              <Statistics times={this.state.times}></Statistics>
+            </Box>
+          </div>
+        </div>
+      </div >
+
+
     );
   }
 }

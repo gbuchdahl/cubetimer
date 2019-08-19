@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import moment from 'moment';
-import {formatTime} from './timeUtils'
+import { formatTime } from './timeUtils'
 
 export default class Stopwatch extends Component {
 
 
-    constructor({running, runningTime}){
+    constructor({ running, runningTime }) {
         super();
         this.state = {
             running,
@@ -14,7 +14,7 @@ export default class Stopwatch extends Component {
         }
     }
 
-    componentWillReceiveProps(nextProps){
+    componentWillReceiveProps(nextProps) {
         if (nextProps.running !== this.state.running) {
             this.handleButton()
         }
@@ -22,9 +22,9 @@ export default class Stopwatch extends Component {
 
     handleButton = () => {
         if (!this.state.running) {
-            this.setState({startTime: Date.now()})
+            this.setState({ startTime: Date.now() })
             this.timer = setInterval(
-                () => this.setState({runningTime: Date.now() - this.state.startTime}), 10) 
+                () => this.setState({ runningTime: Date.now() - this.state.startTime }), 10)
         } else {
             clearInterval(this.timer)
             this.props.updateTimes(this.state.runningTime)
@@ -34,21 +34,21 @@ export default class Stopwatch extends Component {
         })
     }
 
-    render(){
+    render() {
 
-        return(
+        return (
 
-            <div className='flex flex-column justify-center'>
-                <div className='ph6 pv4 f-headline center tracked-tight'>
+            <div >
+                <div id='time' className='mono is-1 title'>
                     {formatTime(this.state.runningTime)}
                 </div>
-                <div className='pb3 center ph5'>
-                    {this.state.running ? 
-                    <button onClick={this.handleButton} className="bw0 grow br3 bg-red white fw5 f3 pv2 ph6">STOP</button>: 
-                    <button onClick={this.handleButton} className="bw0 grow br3 bg-green white fw5 f3 pv2 ph6">START</button>}
-                    
+                <div>
+                    {this.state.running ?
+                        <button onClick={this.handleButton} className="button is-danger is-fullwidth is-large">STOP</button> :
+                        <button onClick={this.handleButton} className="button is-primary is-fullwidth is-large">START</button>}
+
                 </div>
-            </div>
+            </div >
 
 
         )
